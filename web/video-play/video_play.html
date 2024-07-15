@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <title>video-player</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="//resource.ksyun.com/project/resource/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <h1 style="display: none;"></h1>
+    <div id="titleBar">
+        <a href="https://resource.ksyun.com/project/cms/310661b822ed459e5e71b98c8323f99a" target="_blank">
+            <img class="logo" src="https://resource.ksyun.com/project/cms/310661b822ed459e5e71b98c8323f99a" />
+        </a>
+        <p class="name">KINGSOFT CLOUD</p>
+        <ul>
+            <li><a href="one.html" style="cursor: default">注销</a></li>
+            <li><a href="./video/help.txt" style="cursor: help">帮助</a></li>
+        </ul>
+    </div>
+
+    <div id="tab">
+        <ul>
+            <li><a href="#submit" id="submit">上传视频</a></li>
+            <li><a href="#check" id="check">视频列表</a></li>
+            <li><a href="#del"  id="del">删除视频</a></li>
+            <li><a href="#about">关于</a></li>
+        </ul>
+    </div>
+    
+    <div id="submit" class="content">
+        <h2>提交文件</h2>
+        <form id="submitForm">
+            <input type="file" id="fileInput">
+            <button type="button" id="submitFile">提交</button>
+        </form>
+        <div id="submitResult"></div>
+    </div>
+
+    <div id="check" class="content">
+        <div id="player">
+            <div id="video-container"></div>
+            <div id="name">视频名（请选择视频）</div>
+            <div id="author">作者</div>
+        </div>
+    
+        <div id="selector"></div>
+        <div id="d" style="display: none;"></div>
+    </div>
+
+
+    <script src="//unpkg.byted-static.com/xgplayer/2.31.2/browser/index.js" charset="utf-8"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
