@@ -1,7 +1,7 @@
 package trans
 
 import (
-	"bytes"
+	"bufio"
 	"context"
 	"fmt"
 	"os/exec"
@@ -107,13 +107,30 @@ func (tm *TranscodeManager) transcode(task *TranscodeTask) error {
 	task.args = task.Param.ToFFmpegArgs(task.InputFile, task.OutputFile)
 	cmd := exec.CommandContext(tm.ctx, ffmpegBin, task.args...)
 	log.Logger.Debugf("transcode trans task: %s, cmd: %s", task.ID, cmd.String())
-	var out bytes.Buffer
-	cmd.Stdout = &out
-	cmd.Stderr = &out
-	err := cmd.Run()
+	outPipe, err := cmd.StdoutPipe()
 	if err != nil {
-		return fmt.Errorf("transcode failed: %w, output: %s", err, out.String())
+		return fmt.Errorf("failed to get stdout pipe: %w", err)
+	}
+
+	cmd.Stderr = cmd.Stdout
+
+	if err := cmd.Start(); err != nil {
+		return fmt.Errorf("failed to start command: %w", err)
+	}
+
+	go func() {
+		scanner := bufio.NewScanner(outPipe)
+		for scanner.Scan() {
+			log.LoggerSlave.Infof("transcode task out %s: %s", task.ID, scanner.Text())
+		}
+
+		if scanner.Err() != nil {
+			log.LoggerSlave.Errorf("transcode task error %s: %s", task.ID, scanner.Err())
+		}
+	}()
+
+	if err := cmd.Wait(); err != nil {
+		return fmt.Errorf("transcode failed: %w", err)
 	}
 	return nil
 }
-

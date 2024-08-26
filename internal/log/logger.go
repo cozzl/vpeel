@@ -7,6 +7,7 @@ import (
 )
 
 var Logger *zap.SugaredLogger
+var LoggerSlave *zap.SugaredLogger
 var LoggerAccess *zap.Logger
 
 var path = "/Users/markov/Documents/code/go_code/vpeel/log/"
@@ -14,6 +15,7 @@ var path = "/Users/markov/Documents/code/go_code/vpeel/log/"
 func InitLogger() {
 	writeSyncerError := getLogWriter(path + "info.log")
 	writeSyncerMonitor := getLogWriter(path + "error.log")
+	writeSyncerSlave := getLogWriter(path + "slave.log")
 	writeSyncerAccess := getLogWriter(path + "access.log")
 	encoder := getEncoder()
 
@@ -23,12 +25,13 @@ func InitLogger() {
 
 	coreError := zapcore.NewCore(encoder, writeSyncerError, infoLevel)
 	coreMonitor := zapcore.NewCore(encoder, writeSyncerMonitor, zapcore.ErrorLevel)
+	coreSlave := zapcore.NewCore(encoder, writeSyncerSlave, zapcore.InfoLevel)
 	coreAccess := zapcore.NewCore(encoder, writeSyncerAccess, zapcore.InfoLevel)
 
 	core := zapcore.NewTee(coreError, coreMonitor)
-	logger := zap.New(core, zap.AddCaller())
+	Logger = zap.New(core, zap.AddCaller()).Sugar()
+	LoggerSlave = zap.New(coreSlave, zap.AddCaller()).Sugar()
 	LoggerAccess = zap.New(coreAccess, zap.AddCaller())
-	Logger = logger.Sugar()
 }
 
 func SyncLogger() {

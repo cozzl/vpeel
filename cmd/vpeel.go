@@ -4,6 +4,7 @@ import (
 	"vpeel/api"
 	"vpeel/internal/log"
 	"vpeel/internal/trans"
+	sfu "vpeel/internal/webrtc"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
 
 	trans.DefaultManager.Start()
 	go trans.DefaultManager.Result()
-
-	api.Run()
+	go api.Run(":8080")
+	go sfu.Run(":8090")
+	select {}
 }

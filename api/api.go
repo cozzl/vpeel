@@ -56,7 +56,7 @@ func logger(c *gin.Context) {
 	)
 }
 
-func Run() {
+func Run(addr string) {
 	gin.SetMode(gin.ReleaseMode)
 	gin.DefaultWriter = ioutil.Discard
 	
@@ -66,5 +66,6 @@ func Run() {
 	for _, rfunc := range routerInitList {
 		rfunc(router)
 	}
-	router.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	fmt.Println("api listen on", addr)
+	router.Run(addr) 
 }

@@ -2,6 +2,7 @@ package cors
 
 import (
 	"net/http"
+	"vpeel/internal/log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,8 +19,9 @@ func Cors() gin.HandlerFunc {
 			c.Header("Access-Control-Allow-Credentials", "true")
 		}
 		if method == "OPTIONS" {
+			log.Logger.Debugf("cors origin %s", origin)
 			c.AbortWithStatus(http.StatusNoContent)
+			return
 		}
-		c.Next()
 	}
 }

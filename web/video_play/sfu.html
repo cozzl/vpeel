@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8" />
+  <title>video-player</title>
+  <link rel="stylesheet" href="css/style.css">
+   <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+</head>
+
+<body>
+  <div class="header">
+    <p>测试中......</p>
+  </div>
+
+  <div class="topnav">
+    <a href="list.html">视频列表</a>
+    <a href="submit.html">上传视频</a>
+    <a href="404.html">视频评测</a>
+    <a href="sfu.html">视频会议</a>
+    <a href="404.html" style="float:right">关于</a>
+  </div>
+
+  <div class="row">
+    <h3> Local Video </h3>
+    <video id="localVideo" width="160" height="120" autoplay muted></video> <br />
+  
+    <h3> Remote Video </h3>
+    <div id="remoteVideos"></div> <br />
+  
+    <h3> Logs </h3>
+    <div id="logs"></div>
+  </div>
+</body>
+<script src="js/sfu.js"></script>
+</html>

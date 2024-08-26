@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8" />
+  <title>video-player</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+</head>
+
+<body>
+  <div class="header">
+    <p>测试中......</p>
+  </div>
+
+  <div class="topnav">
+    <a href="list.html">视频列表</a>
+    <a href="submit.html">上传视频</a>
+    <a href="404.html">视频评测</a>
+    <a href="sfu.html">视频会议</a>
+    <a href="404.html" style="float:right">关于</a>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <div class="fakevideo" id="video-container" style="height:570px;"></div>
+      </div>
+    </div>
+
+    <div class="rightcolumn">
+      <div class="card">
+      <h3>视频列表</h3>
+        <div id="selector">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h3>copyright ©zhao</h3>
+  </div>
+
+  <script src="//unpkg.byted-static.com/xgplayer/2.31.2/browser/index.js" charset="utf-8"></script>
+  <script src="js/list.js"></script>
+  <script src="js/submit.js"></script>
+</body>
+</html>

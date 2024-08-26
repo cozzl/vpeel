@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8" />
+  <title>video-player</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+</head>
+
+<body>
+  <div class="header">
+    <p>测试中......</p>
+  </div>
+
+  <div class="topnav">
+    <a href="list.html">视频列表</a>
+    <a href="submit.html">上传视频</a>
+    <a href="404.html">视频评测</a>
+    <a href="sfu.html">视频会议</a>
+    <a href="404.html" style="float:right">关于</a>
+  </div>
+
+  <div class="card">
+    <h3>选择文件</h3>
+    <form id="submitForm">
+      <input type="file" id="fileInput"><br>
+      <div id="submitResult"></div>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn25">
+      <div class="card">
+        <h3>增加转码模板</h3>
+        <form id="transParam">
+          <label for="templateName">模板名:</label>
+          <input type="text" id="templateName" name="templateName" placeholder="请输入模板名"> <br>
+
+          <label for="vcodec">视频编码格式:</label>
+          <input type="text" id="vcodec" name="vcodec" value="copy" placeholder="copy"> <br>
+
+          <label for="acodec">音频编码格式:</label>
+          <input type="text" id="acodec" name="acodec" value="copy" placeholder="copy"><br>
+
+          <label for="width">视频长:</label>
+          <input type="number" id="width" name="width" placeholder="随源"> <br>
+
+          <label for="height">视频宽:</label>
+          <input type="number" id="height" name="height" placeholder="随源"> <br>
+
+          <label for="bitrate">码率:</label>
+          <input type="number" id="bitrate" name="bitrate" placeholder="随源"> <br>
+
+          <label for="fps">帧率:</label>
+          <input type="number" id="fps" name="fps" placeholder="随源"> <br>
+
+          <label for="gop">GOP大小:</label>
+          <input type="number" id="gop" name="gop" placeholder="自适应"> <br>
+
+          <label for="bframes">B帧数量:</label>
+          <input type="number" id="bframes" name="bframes" placeholder="自适应"> <br>
+
+          <label for="filter">滤镜参数:</label>
+          <input type="text" id="filter" name="filter" placeholder="无"> <br>
+
+          <label for="thread">线程数量:</label>
+          <input type="number" id="thread" name="thread" value=3> <br>
+
+          <label for="codec_param">编码器参数:</label>
+          <input type="text" id="codec_param" name="codec_param" placeholder="无"> <br>
+
+          <label for="profile">profile:</label>
+          <select id="profile" name="profile">
+            <option value=""></option>
+            <option value="baseline">baseline</option>
+            <option value="high">high</option>
+            <option value="high10">high10</option>
+            <option value="high422">high422</option>
+            <option value="high444">high444</option>
+            <option value="main">main</option>
+          </select> <br>
+
+          <label for="preset">preset:</label>
+          <select id="preset" name="preset">
+            <option value=""></option>
+            <option value="veryslow">veryslow</option>
+            <option value="slower">slower</option>
+            <option value="slow">slow</option>
+            <option value="fast">fast</option>
+            <option value="faster">faster</option>
+            <option value="veryfast">veryfast</option>
+            <option value="superfast">superfast</option>
+            <option value="ultrafast">ultrafast</option>
+          </select> <br>
+        </form>
+        <br>
+        <button id="addParam">增加模板</button>
+      </div>
+    </div>
+
+    <div class="rightcolumn75">
+      <div class="card" style="max-height: 335px; overflow: auto;">
+        <h3>转码参数表</h3>
+        <table id="paramTable" border="1" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>模板名</th>
+              <th>视频编码格式</th>
+              <th>音频编码格式</th>
+              <th>视频长</th>
+              <th>视频宽</th>
+              <th>码率</th>
+              <th>帧率</th>
+              <th>GOP大小</th>
+              <th>B帧数量</th>
+              <th>滤镜参数</th>
+              <th>线程数量</th>
+              <th>编码器参数</th>
+              <th>profile</th>
+              <th>preset</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="rightcolumn75">
+      <div class="card">
+        <h3>删除转码模板</h3>
+        <label for="templateName">模板名:</label>
+        <input type="text" id="delTemplateName" name="templateName" placeholder="请输入模板名"> 
+        <button type="button" id="delParam">删除模板</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>提交文件</h3>
+    <button type="button" id="submitFile">上传文件</button>
+  </div>
+
+  <div class="footer">
+    <h3>copyright ©zhao</h3>
+  </div>
+
+  <script src="//unpkg.byted-static.com/xgplayer/2.31.2/browser/index.js" charset="utf-8"></script>
+  <script src="js/list.js"></script>
+  <script src="js/submit.js"></script>
+</body>
+
+</html>
